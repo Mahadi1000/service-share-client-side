@@ -1,11 +1,13 @@
 // eslint-disable-next-line no-unused-vars
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../Firebase/AuthProvider";
 
 const Login = () => {
-
-    // const navigate = useNavigate();
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
+    const navigate = useNavigate();
     const emailRegex = /^\S+@\S+\.\S+$/;
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@#$!%^&*]{6,}$/;
@@ -16,16 +18,16 @@ const Login = () => {
       const email = form.get("email");
       const password = form.get("password");
       console.log(email, password);
-      // signIn(email, password).then((result) => {
-      //   console.log(result.user);
-      //   e.target.reset();
-      //   toast.success("Successfully Logged IN!");
-      //   setTimeout(() => {
-      //     navigate("/");
-      //   }, 2000).catch((error) => {
-      //     console.log(error);
-      //   });
-      // });
+      signIn(email, password).then((result) => {
+        console.log(result.user);
+        e.target.reset();
+        toast.success("Successfully Logged IN!");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000).catch((error) => {
+          console.log(error);
+        });
+      });
 
       if (!email.match(emailRegex)) {
         toast.error(
@@ -39,7 +41,15 @@ const Login = () => {
         );
       }
     };
-
+ const handleGoogleSignIn = () => {
+   signInWithGoogle().then((result) => {
+     toast.success("Successfully Logged In!");
+     console.log(result.user);
+     setTimeout(() => {
+       navigate("/");
+     }, 2000);
+   });
+ };
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover text-white"
@@ -84,7 +94,8 @@ const Login = () => {
             Login
           </button>
           <button
-            className="w-full mt-2 btn text-black px-4 py-2 rounded-md hover:bg-blue-400"
+            onClick={handleGoogleSignIn}
+            className="w-full mt-2 btn btn-outline btn-info"
           >
             Sign In with Google.
           </button>

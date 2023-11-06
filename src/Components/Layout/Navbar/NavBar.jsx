@@ -1,8 +1,14 @@
+import { useContext } from "react";
 import { useEffect, useState } from "react";
-import {  NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Firebase/AuthProvider";
 
 const Navbar = () => {
+  const { user, LogOut } = useContext(AuthContext);
 
+  const handleSignOut = () => {
+    LogOut().then().catch();
+  };
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -20,19 +26,19 @@ const Navbar = () => {
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
-const navLinks = (
-  <>
-    <li className=" ">
-      <NavLink to="/">Home</NavLink>
-    </li>
-    <li className=" ">
-      <NavLink to="/addProduct">Add Product</NavLink>
-    </li>
-    <li className=" ">
-      <NavLink to="/contact">Contact With Us</NavLink>
-    </li>
-  </>
-);
+  const navLinks = (
+    <>
+      <li className=" ">
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li className=" ">
+        <NavLink to="/addProduct">Add Product</NavLink>
+      </li>
+      <li className=" ">
+        <NavLink to="/contact">Contact With Us</NavLink>
+      </li>
+    </>
+  );
   return (
     <div
       className="navbar fixed text-white  top-0 shadow-sm z-10 px-4 backdrop-blur-sm"
@@ -75,7 +81,7 @@ const navLinks = (
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className=" navbar-end">
-          {/* {user && (
+          {user && (
             <div>
               <h1>{user.displayName}</h1>
             </div>
@@ -95,7 +101,7 @@ const navLinks = (
                   className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <button >Sign Out</button>
+                    <button onClick={handleSignOut}>Sign Out</button>
                   </li>
                 </ul>
               </div>
@@ -104,7 +110,7 @@ const navLinks = (
                 <button className="btn btn-ghost text-white">Login</button>
               </Link>
             )}
-          </div> */}
+          </div>
           <div>
             <label className="swap swap-rotate">
               {/* this hidden checkbox controls the state */}
@@ -133,6 +139,6 @@ const navLinks = (
       </div>
     </div>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

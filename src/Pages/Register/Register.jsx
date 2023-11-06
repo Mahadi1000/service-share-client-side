@@ -1,54 +1,55 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../Firebase/AuthProvider";
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const fullNameRegex = /^[A-Za-z\s]+$/;
+  const emailRegex = /^\S+@\S+\.\S+$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@#$!%^&*]{6,}$/;
 
-      const fullNameRegex = /^[A-Za-z\s]+$/;
-      const emailRegex = /^\S+@\S+\.\S+$/;
-      const passwordRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@#$!%^&*]{6,}$/;
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const name = form.get("name");
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(name, email, password);
 
-      const handleRegister = (e) => {
-        e.preventDefault();
-        const form = new FormData(e.currentTarget);
-        const name = form.get("name");
-        const email = form.get("email");
-        const password = form.get("password");
-        console.log(name, email, password);
-
-        if (!name.match(fullNameRegex)) {
-          // Full Name is invalid
-          toast.error("Full Name is invalid");
-          return;
-        }
-        if (!email.match(emailRegex)) {
-          // Email is invalid
-          toast.error(
-            "Invalid email format. Please enter a valid email address."
-          );
-          return;
-        }
-        if (!password.match(passwordRegex)) {
-          // Password is invalid
-          toast.error(
-            "Password must be at least 6 characters and contain at least one uppercase letter, one lowercase letter, and one digit."
-          );
-          return;
-        }
-        //    create user
-        // createUser(email, password)
-        //   .then((result) => {
-        //     console.log(result.user);
-        //     toast.success("Sign up successful!");
-        //     e.target.reset();
-        //     setTimeout(() => {
-        //       navigate("/");
-        //     }, 3000);
-        //   })
-        //   .catch((error) => {
-        //     console.log(error);
-        //   });
-      };
+    if (!name.match(fullNameRegex)) {
+      // Full Name is invalid
+      toast.error("Full Name is invalid");
+      return;
+    }
+    if (!email.match(emailRegex)) {
+      // Email is invalid
+      toast.error("Invalid email format. Please enter a valid email address.");
+      return;
+    }
+    if (!password.match(passwordRegex)) {
+      // Password is invalid
+      toast.error(
+        "Password must be at least 6 characters and contain at least one uppercase letter, one lowercase letter, and one digit."
+      );
+      return;
+    }
+    //  create user
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Sign up successful!");
+        e.target.reset();
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div
       className="min-h-screen flex items-center justify-center "
@@ -124,6 +125,6 @@ const Register = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Register
+export default Register;
