@@ -65,7 +65,7 @@ const Footer = () => {
               </div>
             </div>
           </nav>
-          <hr className="mt-20" />
+          <hr className="mt-20 " />
           <p className="text-center text-gray-600 mt-5">
             {" "}
             Copyright © 2023 by AncoraThemes. All rights reserved.

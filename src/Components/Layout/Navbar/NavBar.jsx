@@ -70,12 +70,11 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-3xl font-cinzel">
-            <strong>
-              <em className="text-red-600">Digital</em>
-            </strong>
-            <span>store</span>
-          </a>
+          <Link to={"/"}>
+            <a className="btn btn-ghost normal-case text-3xl font-cinzel">
+              <img src="https://i.ibb.co/1JBgCBc/logo-main.webp" alt="" />
+            </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
