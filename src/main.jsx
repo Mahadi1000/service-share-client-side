@@ -8,6 +8,7 @@ import Root from "./Components/Layout/Root";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import AuthProvider from "./Firebase/AuthProvider";
+import Contact from "./Pages/Contact/Contact";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,7 +19,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-      {},
+      {
+        path: "contact",
+        element: <Contact></Contact>
+      },
     ],
   },
   {
