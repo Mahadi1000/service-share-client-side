@@ -8,7 +8,7 @@ export default {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"),require("mamba-ui")],
   daisyui: {
     themes: ["cupcake", "luxury"],
   },

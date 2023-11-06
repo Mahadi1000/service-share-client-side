@@ -1,0 +1,42 @@
+[
+  {
+    "ServiceName": "House Cleaning",
+    "ServiceDescription": "Professional cleaning for your home",
+    "ViewDetailButton": "View Details",
+    "ServiceProvider": {
+      "ServiceImage": "https://example.com/service1.jpg",
+      "ServiceName": "CleanPro Services",
+      "ServicePrice": "$99.99"
+    }
+  },
+  {
+    "ServiceName": "Garden Landscaping",
+    "ServiceDescription": "Transform your outdoor space",
+    "ViewDetailButton": "See More",
+    "ServiceProvider": {
+      "ServiceImage": "https://example.com/service2.jpg",
+      "ServiceName": "GreenScape Landscapers",
+      "ServicePrice": "$249.99"
+    }
+  },
+  {
+    "ServiceName": "Mobile Repair",
+    "ServiceDescription": "Fix your broken smartphone",
+    "ViewDetailButton": "Learn More",
+    "ServiceProvider": {
+      "ServiceImage": "https://example.com/service3.jpg",
+      "ServiceName": "Gadget Wizards",
+      "ServicePrice": "$69.99"
+    }
+  },
+  {
+    "ServiceName": "Personal Training",
+    "ServiceDescription": "Get in shape with a personal trainer",
+    "ViewDetailButton": "View Service",
+    "ServiceProvider": {
+      "ServiceImage": "https://example.com/service4.jpg",
+      "ServiceName": "FitLife Trainers",
+      "ServicePrice": "$149.99"
+    }
+  }
+]
