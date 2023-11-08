@@ -9,6 +9,7 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import AuthProvider from "./Firebase/AuthProvider";
 import Contact from "./Pages/Contact/Contact";
+import AddServices from "./Components/Layout/Navbar/AddServices";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path: "contact",
         element: <Contact></Contact>
       },
+      {
+        path: "addService",
+        element: <AddServices></AddServices>
+      }
     ],
   },
   {

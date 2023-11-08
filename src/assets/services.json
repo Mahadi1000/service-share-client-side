@@ -1,42 +1,30 @@
 [
   {
-    "ServiceName": "House Cleaning",
-    "ServiceDescription": "Professional cleaning for your home",
-    "ViewDetailButton": "View Details",
-    "ServiceProvider": {
-      "ServiceImage": "https://example.com/service1.jpg",
-      "ServiceName": "CleanPro Services",
-      "ServicePrice": "$99.99"
-    }
+    "serviceName": "Taxi Service",
+    "serviceImage": "taxi.jpg",
+    "serviceDescription": "Convenient and reliable taxi service for your travels.",
+    "type": "taxi",
+    "rating": 4.5
   },
   {
-    "ServiceName": "Garden Landscaping",
-    "ServiceDescription": "Transform your outdoor space",
-    "ViewDetailButton": "See More",
-    "ServiceProvider": {
-      "ServiceImage": "https://example.com/service2.jpg",
-      "ServiceName": "GreenScape Landscapers",
-      "ServicePrice": "$249.99"
-    }
+    "serviceName": "Car Rental",
+    "serviceImage": "food_delivery.jpg",
+    "serviceDescription": "Delicious food delivered to your doorstep in no time.",
+    "type": "rent",
+    "rating": 4.8
   },
   {
-    "ServiceName": "Mobile Repair",
-    "ServiceDescription": "Fix your broken smartphone",
-    "ViewDetailButton": "Learn More",
-    "ServiceProvider": {
-      "ServiceImage": "https://example.com/service3.jpg",
-      "ServiceName": "Gadget Wizards",
-      "ServicePrice": "$69.99"
-    }
+    "serviceName": "House Cleaning",
+    "serviceImage": "cleaning.jpg",
+    "serviceDescription": "Professional cleaning services to keep your home spotless.",
+    "type": "Home Services",
+    "rating": 4.7
   },
   {
-    "ServiceName": "Personal Training",
-    "ServiceDescription": "Get in shape with a personal trainer",
-    "ViewDetailButton": "View Service",
-    "ServiceProvider": {
-      "ServiceImage": "https://example.com/service4.jpg",
-      "ServiceName": "FitLife Trainers",
-      "ServicePrice": "$149.99"
-    }
+    "serviceName": "Car Book",
+    "serviceImage": "shopping.jpg",
+    "serviceDescription": "Shop for your favorite items from the comfort of your home.",
+    "type": "Car book",
+    "rating": 4.6
   }
 ]

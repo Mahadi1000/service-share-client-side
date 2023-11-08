@@ -3,6 +3,7 @@ import About from "./About";
 import Banner from "./Banner";
 import Blogs from "./Blogs";
 import Footer from "./Footer";
+import OurServices from "./OurServices";
 import Testimonial from "./Testimonial";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
       <Navbar></Navbar>
       <Banner></Banner>
       <About></About>
+      <OurServices></OurServices>
       <Testimonial></Testimonial>
       <Blogs></Blogs>
       <Footer></Footer>
