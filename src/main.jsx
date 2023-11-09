@@ -10,6 +10,7 @@ import Register from "./Pages/Register/Register";
 import AuthProvider from "./Firebase/AuthProvider";
 import Contact from "./Pages/Contact/Contact";
 import AddServices from "./Components/Layout/Navbar/AddServices";
+import ShowAllservices from "./Pages/ShowAllservices/ShowAllservices";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,8 +26,12 @@ const router = createBrowserRouter([
         element: <Contact></Contact>
       },
       {
-        path: "addService",
+        path: "/addService",
         element: <AddServices></AddServices>
+      },
+      {
+        path: "/showAllService/:type",
+        element: <ShowAllservices></ShowAllservices>
       }
     ],
   },

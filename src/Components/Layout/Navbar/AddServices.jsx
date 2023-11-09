@@ -7,19 +7,23 @@ const AddServices = () => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const brand = form.brand.value;
+    const services = form.services.value;
     const type = form.type.value;
     const price = form.price.value;
-    const rating = form.rating.value;
+    const description = form.description.value;
+    const providerImage = form.providerImage.value;
+    const serviceArea = form.serviceArea.value;
 
     const photo = form.photo.value;
     const addServices = {
       name,
-      brand,
+      services,
       type,
       price,
-      rating,
+      description,
       photo,
+      providerImage,
+      serviceArea,
     };
     console.log(addServices);
     fetch("http://localhost:5000/allServices", {
@@ -85,12 +89,12 @@ const AddServices = () => {
         </div>
         <div className="mb-4  w-1/2">
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Brand Name
+            Service Name
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            name="brand"
+            name="services"
             placeholder="Enter your chef"
           />
         </div>
@@ -98,14 +102,12 @@ const AddServices = () => {
           <label className="label"></label>
           <select name="type" className="select select-bordered">
             <option disabled selected>
-              Type of product
+              Type of service
             </option>
-            <option>Phone</option>
-            <option>Laptop</option>
-            <option>Headphone</option>
-            <option>Wearable</option>
-            <option>Computer</option>
-            <option>Camera</option>
+            <option>taxi</option>
+            <option>rent</option>
+            <option>Home Services</option>
+            <option>Car book</option>
           </select>
         </div>
         <div className="mb-4  w-1/2 ">
@@ -124,13 +126,28 @@ const AddServices = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="city"
           >
-            Rating
+            Description
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            name="rating"
+            name="description"
             placeholder="Enter your category"
+          />
+        </div>
+        <div className="mb-4  w-1/2">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="city"
+          >
+            Service Area
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+            type="text"
+            name="serviceArea"
+            placeholder="Enter your Service Area
+"
           />
         </div>
         <div className="mb-4  w-1/2">
@@ -144,6 +161,17 @@ const AddServices = () => {
             placeholder="Photo URL"
           />
         </div>
+        <div className="mb-4  w-1/2">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Service Provider image
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+            name="providerImage"
+            type="text"
+            placeholder="Provider image"
+          />
+        </div>
 
         <div className="mb-6 text-center w-full">
           <button
@@ -151,7 +179,7 @@ const AddServices = () => {
             value="Add Coffee"
             type="submit"
           >
-            Add Coffee
+            Add Service
           </button>
         </div>
       </form>
@@ -160,3 +188,5 @@ const AddServices = () => {
 };
 
 export default AddServices;
+
+// Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi dolores iste ipsum minima ipsam velit odio, rerum corrupti. A alias blanditiis, esse ut at perspiciatis nisi maiores repudiandae? Nihil, maxime?
