@@ -11,6 +11,9 @@ import AuthProvider from "./Firebase/AuthProvider";
 import Contact from "./Pages/Contact/Contact";
 import AddServices from "./Components/Layout/Navbar/AddServices";
 import ShowAllservices from "./Pages/ShowAllservices/ShowAllservices";
+import AllServices from "./Pages/AllService/AllServices";
+import ShowSingleService from "./Pages/ShowSingelService/ShowSingleService";
+import ManageServices from "./Pages/ManageServices/ManageServices";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +35,17 @@ const router = createBrowserRouter([
       {
         path: "/showAllService/:type",
         element: <ShowAllservices></ShowAllservices>
+      },
+      {
+        path: "/singleService/:type",
+        element: <ShowSingleService></ShowSingleService>
+      }, {
+        path: 'allServices',
+        element: <AllServices></AllServices>
+      },
+      {
+        path: '/manageService',
+        element: <ManageServices></ManageServices>
       }
     ],
   },

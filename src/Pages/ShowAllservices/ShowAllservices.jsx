@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../../Firebase/AuthProvider";
 
 function ShowAllService() {
   const { type } = useParams();
+  const navigate = useNavigate();
   const [typeData, setTypeData] = useState([]);
   console.log(type, typeData);
-
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     // Fetch the data for the specified 'type'
     fetch(`http://localhost:5000/allServices?type=${type}`)
@@ -18,6 +21,14 @@ function ShowAllService() {
         console.error(error);
       });
   }, [type]);
+
+  const handleSingleService = (service) => {
+        if (user) {
+          navigate(`/singleService/${type}`, { state: service  });
+        } else {
+          navigate("/login");
+        }
+  }
 
   return (
     <div className="mt-28">
@@ -47,7 +58,12 @@ function ShowAllService() {
             </div>
             <p className="px-5 py-3">{service.description}</p>
             <div className="flex justify-center ">
-              <button className="btn btn-outline btn-success">View Details</button>
+              <button
+                onClick={() => handleSingleService(service)}
+                className="btn btn-outline btn-success"
+              >
+                View Details
+              </button>
             </div>
           </div>
         ))}

@@ -37,6 +37,12 @@ const Navbar = () => {
       <li className=" ">
         <NavLink to="/contact">Contact With Us</NavLink>
       </li>
+      <li className=" ">
+        <NavLink to="/allService">All Services</NavLink>
+      </li>
+      <li className=" ">
+        <NavLink to="/manageService">Manage Services</NavLink>
+      </li>
     </>
   );
   return (
