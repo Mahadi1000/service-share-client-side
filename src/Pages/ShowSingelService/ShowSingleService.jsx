@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,11 +10,7 @@ const ShowSingleService = () => {
   console.log(type, service);
 
   const handleBookButton = () => {
-      if (loading) {
-        console.log("Booking in progress...");
-        return;
-      }
-      setLoading(true);
+
     // Make a POST request to your backend API to add the product to the cart
     fetch("http://localhost:5000/bookings", {
       method: "POST",
