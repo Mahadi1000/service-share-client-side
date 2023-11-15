@@ -104,14 +104,14 @@ useEffect(() => {
                       service
                     )}`}
                   >
-                    <button className="btn btn-outline btn-success">
+                    <button className="btn w-full btn-outline btn-success">
                       View Details
                     </button>
                   </Link>
                 ) : (
                   <button
                     onClick={() => navigate("/login")}
-                    className="btn btn-outline btn-success"
+                    className="btn  btn-outline btn-success"
                   >
                     Login to View Details
                   </button>

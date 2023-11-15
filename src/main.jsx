@@ -11,9 +11,10 @@ import AuthProvider from "./Firebase/AuthProvider";
 import Contact from "./Pages/Contact/Contact";
 import AddServices from "./Components/Layout/Navbar/AddServices";
 import ShowAllservices from "./Pages/ShowAllservices/ShowAllservices";
-import AllServices from "./Pages/AllService/AllServices";
 import ShowSingleService from "./Pages/ShowSingelService/ShowSingleService";
 import ManageServices from "./Pages/ManageServices/ManageServices";
+import UpdateService from "./Pages/UpdateService/UpdateService";
+import MyBooking from "./Pages/MyBooking/MyBooking";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,27 +27,35 @@ const router = createBrowserRouter([
       },
       {
         path: "contact",
-        element: <Contact></Contact>
+        element: <Contact></Contact>,
       },
       {
         path: "/addService",
-        element: <AddServices></AddServices>
+        element: <AddServices></AddServices>,
       },
       {
         path: "/showAllService/:type",
-        element: <ShowAllservices></ShowAllservices>
+        element: <ShowAllservices></ShowAllservices>,
       },
       {
         path: "/singleService/:type",
-        element: <ShowSingleService></ShowSingleService>
-      }, {
-        path: 'allServices',
-        element: <AllServices></AllServices>
+        element: <ShowSingleService></ShowSingleService>,
       },
       {
-        path: '/manageService',
-        element: <ManageServices></ManageServices>
-      }
+        path: "/myBooking",
+        element: <MyBooking></MyBooking>,
+      },
+      {
+        path: "/manageService",
+        element: <ManageServices></ManageServices>,
+      },
+      {
+        path: "/updateService/:id",
+        element: <UpdateService></UpdateService>,
+        loader: ({ params }) => {
+          return fetch(`http://localhost:5000/allServices/${params.id}`);
+        },
+      },
     ],
   },
   {

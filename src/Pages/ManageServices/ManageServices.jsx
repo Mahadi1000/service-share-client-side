@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Swal from "sweetalert2";
+import "sweetalert2/src/sweetalert2.scss";
 
 const ManageServices = () => {
-  const [booking, setBooking] = useState([]);
-  console.log(booking);
+  const [allServices, setAllServices] = useState([]);
+  console.log(allServices);
 
   useEffect(() => {
     // Fetch cart data from the server
-    fetch("http://localhost:5000/bookings")
+    fetch("http://localhost:5000/allServices")
       .then((response) => response.json())
       .then((data) => {
-        setBooking(data);
+        setAllServices(data);
       })
       .catch((error) => {
         console.error("Error fetching bookings data:", error);
@@ -29,7 +30,7 @@ const ManageServices = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${_id}`, {
+        fetch(`http://localhost:5000/allServices/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -37,48 +38,50 @@ const ManageServices = () => {
             console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              setBooking((prevBooking) =>
+              setAllServices((prevBooking) =>
                 prevBooking.filter((cof) => cof._id !== _id)
               );
             }
           })
           .catch((error) => {
-            console.error("Error deleting booking:", error);
+            console.error("Error deleting allServices:", error);
           });
       }
     });
   };
+
 
   return (
     <div className="flex flex-col">
       <h1 className="text-center mt-28 text-3xl text-red-500 font-semibold">
         Bookings Item
       </h1>
-      {booking.map((bookings) => (
-        <div
-          key={bookings.id}
-          className="flex justify-between shadow-xl  mt-7"
-        >
+      {allServices.map((services) => (
+        <div key={services.id} className="flex justify-between shadow-xl  mt-7">
           <figure className="w-1/2">
-            <img src={bookings.photo} alt="Movie" />
+            <img src={services.photo} alt="Movie" />
           </figure>
           <div className="flex justify-between w-1/2 px-4 items-center ">
             <div className="">
-              <h2 className="card-title"> Name: {bookings.name} </h2>
-              <p> Service:{bookings.services} </p>
-              <p>Description: {bookings.description}</p>
-              <p> Price: {bookings.price} tk </p>
-              <p>Rating: {bookings.rating} </p>
+              <h2 className="card-title"> Name: {services.name} </h2>
+              <p> Service:{services.services} </p>
+              <p>Description: {services.description}</p>
+              <p> Price: {services.price} tk </p>
+              <p>Rating: {services.rating} </p>
             </div>
             <div className="card-actions justify-end ">
               <div className="btn-group btn-group-vertical space-y-3">
-                <Link >
-                  <button className="btn btn-outline btn-info rounded-b-none">
+                <Link to={`/updateService/${services._id}`}>
+                  <button
+                 
+                    className="btn btn-outline btn-info rounded-b-none"
+                  >
                     Update
                   </button>
                 </Link>
+
                 <button
-                  onClick={() => handleDelete(bookings._id)}
+                  onClick={() => handleDelete(services._id)}
                   className="btn btn-warning btn-outline"
                 >
                   Delete

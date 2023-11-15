@@ -1,13 +1,13 @@
 const About = () => {
   return (
     <div>
-      <section className=" bg-base-300 my-10 py-16">
+      <section className=" my-10 py-16">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-600 mb-8">
+          <h2 className="text-3xl font-extrabold  mb-8">
             About Us
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="text-lg text-gray-500">
+            <div className="text-lg ">
               <p className="">
                 Welcome to [Your Company Name], your trusted partner for
                 reliable and convenient taxi services.
