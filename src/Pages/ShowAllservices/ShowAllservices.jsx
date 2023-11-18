@@ -11,7 +11,7 @@ function ShowAllService() {
   const { user } = useContext(AuthContext);
   useEffect(() => {
     // Fetch the data for the specified 'type'
-    fetch(`http://localhost:5000/allServices?type=${type}`)
+    fetch(`https://service-share-server.vercel.app/allServices?type=${type}`)
       .then((response) => response.json())
       .then((data) => {
         setTypeData(data);

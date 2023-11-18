@@ -71,7 +71,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/allServices/${params.id}`);
+          return fetch(
+            `https://service-share-server.vercel.app/allServices/${params.id}`
+          );
         },
       },
     ],

@@ -9,7 +9,7 @@ const ManageServices = () => {
 
   useEffect(() => {
     // Fetch cart data from the server
-    fetch("http://localhost:5000/allServices")
+    fetch("https://service-share-server.vercel.app/allServices")
       .then((response) => response.json())
       .then((data) => {
         setAllServices(data);
@@ -30,7 +30,7 @@ const ManageServices = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allServices/${_id}`, {
+        fetch(`https://service-share-server.vercel.app/allServices/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

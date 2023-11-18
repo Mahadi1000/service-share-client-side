@@ -9,7 +9,9 @@ const MyBooking = () => {
 
     useEffect(() => {
       // Fetch cart data from the server
-      fetch("http://localhost:5000/bookings", { withCredentials: true })
+      fetch("https://service-share-server.vercel.app/bookings", {
+        withCredentials: true,
+      })
         .then((response) => response.json())
         .then((data) => {
           setBooking(data);
@@ -18,8 +20,7 @@ const MyBooking = () => {
           console.error("Error fetching bookings data:", error);
         });
     }, []);
-  
-  
+
     const handleDelete = (_id) => {
       Swal.fire({
         title: "Are you sure?",
@@ -31,7 +32,7 @@ const MyBooking = () => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/bookings/${_id}`, {
+          fetch(`https://service-share-server.vercel.app/bookings/${_id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())

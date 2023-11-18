@@ -12,7 +12,7 @@ const OurServices = () => {
     const [combinedData, setCombinedData] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://service-share-server.vercel.app/services")
       .then((response) => response.json())
       .then((data) => {
         setServices(data);
@@ -23,22 +23,22 @@ const OurServices = () => {
       });
   }, []);
 
-useEffect(() => {
-  if (services) {
-    fetch(`http://localhost:5000/allServices`)
-      .then((res) => res.json())
-      .then((data) => {
-        const combined = services.map((service) => ({
-          ...service,
-          serverData: data.find((item) => item.type === service.type),
-        }));
-        setCombinedData(combined);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-}, [services]);
+  useEffect(() => {
+    if (services) {
+      fetch(`https://service-share-server.vercel.app/allServices`)
+        .then((res) => res.json())
+        .then((data) => {
+          const combined = services.map((service) => ({
+            ...service,
+            serverData: data.find((item) => item.type === service.type),
+          }));
+          setCombinedData(combined);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [services]);
 
 // const handleViewDetails = (service, type) => {
 //   if (user) {

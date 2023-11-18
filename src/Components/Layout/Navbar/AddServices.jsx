@@ -26,7 +26,7 @@ const AddServices = () => {
       serviceArea,
     };
     console.log(addServices);
-    fetch("http://localhost:5000/allServices", {
+    fetch("https://service-share-server.vercel.app/allServices", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Typo: "Content-Type," not "Contect-Type"

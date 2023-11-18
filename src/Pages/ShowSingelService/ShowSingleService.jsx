@@ -12,7 +12,7 @@ const ShowSingleService = () => {
   const handleBookButton = () => {
 
     // Make a POST request to your backend API to add the product to the cart
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://service-share-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const ShowSingleService = () => {
       .then((data) => {
         // After successfully adding to the cart, navigate to the cart route
         console.log(data);
-        setLoading(false)
+        setLoading(false);
         toast.success("Added to Booking!");
 
         // alert("successfully added to the cart")

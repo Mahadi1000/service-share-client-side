@@ -8,7 +8,7 @@ const UpdateService = () => {
   // const [updateService, setUpdateService] = useState()
   // useEffect(() => {
   //   // Fetch data based on the ID when the component mounts
-  //   fetch(`http://localhost:5000/allServices/${id}`)
+  //   fetch(`https://service-share-server.vercel.app/allServices/${id}`)
   //     .then((response) => response.json())
   //     .then((data) => {
   //       setUpdateService(data);
@@ -42,13 +42,16 @@ const UpdateService = () => {
       serviceArea,
     };
     console.log(updatedService);
-    fetch(`http://localhost:5000/allServices/${updatedService._id} `, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updateService),
-    })
+    fetch(
+      `https://service-share-server.vercel.app/allServices/${updatedService._id} `,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateService),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
