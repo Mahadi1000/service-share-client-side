@@ -13,6 +13,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "./firebase.config";
+import axios from "axios";
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
@@ -39,13 +40,33 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   useEffect(() => {
     const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
+      // if user exists then issue a token
+      if (currentUser) {
+        axios
+          .post("http://localhost:5000/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("token response", res.data);
+          });
+      } else {
+        axios
+          .post("http://localhost:5000/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+      }
     });
     return () => {
       unSubcribe();
     };
-  }, []);
+  }, [user?.email]);
 
   const AuthInfo = {
     user,

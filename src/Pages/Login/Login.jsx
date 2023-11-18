@@ -4,52 +4,63 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Firebase/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
-  const { signIn, signInWithGoogle } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@#$!%^&*]{6,}$/;
+  const { signIn, signInWithGoogle, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const emailRegex = /^\S+@\S+\.\S+$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@#$!%^&*]{6,}$/;
 
-    const handleLogin = (e) => {
-      e.preventDefault();
-      const form = new FormData(e.currentTarget);
-      const email = form.get("email");
-      const password = form.get("password");
-      console.log(email, password);
-      signIn(email, password).then((result) => {
-        console.log(result.user);
-        e.target.reset();
-        toast.success("Successfully Logged IN!");
-        setTimeout(() => {
-          navigate("/");
-        }, 2000).catch((error) => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(email, password);
+    signIn(email, password).then((result) => {
+      console.log(result.user);
+      e.target.reset();
+      toast.success("Successfully Logged IN!");
+
+      // get access token
+      axios
+        .post("http://localhost:5000/jwt", user, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.success) {
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
+          }
+        })
+        .catch((error) => {
           console.log(error);
         });
-      });
+    });
 
-      if (!email.match(emailRegex)) {
-        toast.error(
-          "Invalid email format. Please enter a valid email address."
-        );
-      }
+    if (!email.match(emailRegex)) {
+      toast.error("Invalid email format. Please enter a valid email address.");
+    }
 
-      if (!password.match(passwordRegex)) {
-        toast.error(
-          "Password must be at least 6 characters and contain at least one uppercase letter, one lowercase letter, and one digit."
-        );
-      }
-    };
- const handleGoogleSignIn = () => {
-   signInWithGoogle().then((result) => {
-     toast.success("Successfully Logged In!");
-     console.log(result.user);
-     setTimeout(() => {
-       navigate("/");
-     }, 2000);
-   });
- };
+    if (!password.match(passwordRegex)) {
+      toast.error(
+        "Password must be at least 6 characters and contain at least one uppercase letter, one lowercase letter, and one digit."
+      );
+    }
+  };
+  const handleGoogleSignIn = () => {
+    signInWithGoogle().then((result) => {
+      toast.success("Successfully Logged In!");
+      console.log(result.user);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    });
+  };
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-center bg-no-repeat bg-cover text-white"
@@ -124,6 +135,6 @@ const Login = () => {
       />
     </div>
   );
-}
+};
 
 export default Login

@@ -9,7 +9,7 @@ const MyBooking = () => {
 
     useEffect(() => {
       // Fetch cart data from the server
-      fetch("http://localhost:5000/bookings")
+      fetch("http://localhost:5000/bookings", { withCredentials: true })
         .then((response) => response.json())
         .then((data) => {
           setBooking(data);

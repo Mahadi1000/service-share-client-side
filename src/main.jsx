@@ -15,6 +15,7 @@ import ShowSingleService from "./Pages/ShowSingelService/ShowSingleService";
 import ManageServices from "./Pages/ManageServices/ManageServices";
 import UpdateService from "./Pages/UpdateService/UpdateService";
 import MyBooking from "./Pages/MyBooking/MyBooking";
+import PrivateRoute from "./Firebase/PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addService",
-        element: <AddServices></AddServices>,
+        element: (
+          <PrivateRoute>
+            <AddServices></AddServices>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/showAllService/:type",
@@ -43,15 +48,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/myBooking",
-        element: <MyBooking></MyBooking>,
+        element: (
+          <PrivateRoute>
+            <MyBooking></MyBooking>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/manageService",
-        element: <ManageServices></ManageServices>,
+        element: (
+          <PrivateRoute>
+            <ManageServices></ManageServices>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/updateService/:id",
-        element: <UpdateService></UpdateService>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <UpdateService></UpdateService>
+          </PrivateRoute>
+        ),
         loader: ({ params }) => {
           return fetch(`http://localhost:5000/allServices/${params.id}`);
         },
