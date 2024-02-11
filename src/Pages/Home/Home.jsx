@@ -1,3 +1,4 @@
+import FacebookMsg from "../../Components/FacebookMsg";
 import Navbar from "../../Components/Layout/Navbar/NavBar";
 import About from "./About";
 import Banner from "./Banner";
@@ -16,6 +17,7 @@ const Home = () => {
       <Testimonial></Testimonial>
       <Blogs></Blogs>
       <Footer></Footer>
+<FacebookMsg></FacebookMsg>
       </div>
   );
 };
